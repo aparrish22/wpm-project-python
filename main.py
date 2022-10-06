@@ -1,8 +1,7 @@
 # TODO finish project(s) in kindle book
-#from turtle import Screen
 import pygame
 import pygame.freetype
-from pygame.locals import * # todo, delete?
+
 import sys
 import time
 import random
