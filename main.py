@@ -1,7 +1,8 @@
 # TODO finish project(s) in kindle book
 #from turtle import Screen
 import pygame
-from pygame.locals import *
+import pygame.freetype
+from pygame.locals import * # todo, delete?
 import sys
 import time
 import random
@@ -12,6 +13,7 @@ from word_character import Word
 from settings import Settings
 
 class Game:
+    ''' wpm main screen game/app '''
     
     def __init__(self):
         pygame.init()
@@ -42,8 +44,9 @@ class Game:
     
     def _check_events(self):
         for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            if event.type == pygame.QUIT:
+                sys.exit()
+            
     
     def read_input(self):
         ''' Read input and measure WPM'''

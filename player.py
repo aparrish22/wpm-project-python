@@ -6,15 +6,16 @@ class Player:
     player_name = ""
     accuracy = 0.0
     speed = 0.0
+    wpm = 0
     
-    def __init__(self, player_name, accuracy, speed, WPM, wpm_high_score=0.0):
+    def __init__(self, player_name, accuracy, speed, wpm, wpm_high_score=0.0):
         ''' initialize class variables '''
         ''' be able to restore player's saved scores for every init via json '''
         self.player_name = player_name
         self.wpm_high_score = wpm_high_score
         self.accuracy = accuracy
         self.speed = speed
-        self.WPM = WPM
+        self.WPM = wpm
         
     def keyboard_input(self, character):
         ''' take input and check for successes and failures. '''
