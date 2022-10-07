@@ -8,21 +8,28 @@ import random
 
 # my modules & classes
 from player import Player
-from word_character import Word
+from word import Word
+from letter import Letter
 from settings import Settings
 
 class Game:
-    ''' wpm main screen game/app '''
+    ''' 
+        wpm main screen game/app 
+        render words
+    '''
     
     def __init__(self):
         pygame.init()
         self.settings = Settings()
         
         # The object we assigned to self.screen is called a surface
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height)
-        )
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height), pygame.RESIZABLE)
         pygame.display.set_caption("Words per Minute")
+        
+        # create word
+        self.word = Word(self)
+        self.words = Word(self).generate_words() # TODO create group of words
+        
         self.bg_color = (20, 95, 45)
         
     def run_game(self):
@@ -32,41 +39,45 @@ class Game:
             self._check_events()
             self._update_screen()
     
+    def _check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._read_key_input(event)
+        
     def _update_screen(self):
         ''' Update images on the screen, and flip to the new screen. '''
         
         # redraw the screen during each pass through the loop
         self.screen.fill(self.settings.bg_color)
         
+        # render list of words onto screen
+        for word in self.words:
+            word.blitme()
+            
+        
         # make the moost recently drawn screen visible
         pygame.display.flip()
     
-    def _check_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            
     
-    def read_input(self):
+    
+    def _read_key_input(self, event):
         ''' Read input and measure WPM'''
         ''' may need this elsewhere???'''
         pass
     
-    def choose_game_mode(self):
-        ''' ask for user input via button to choose a game mode'''
-        pass
+    # def choose_game_mode(self):
+    #     ''' ask for user input via button to choose a game mode'''
+    #     pass
     
-    def generate_words(self):
-        ''' generate words for user to input (to measure wpm)'''
-        pass
+    # def generate_characters(self):
+    #     ''' generate character for user to input (to measure wpm)'''
+    #     pass
     
-    def generate_characters(self):
-        ''' generate character for user to input (to measure wpm)'''
-        pass
-    
-    def generate_page(self):
-        ''' Generate page(s) as user completes every word/char on current page.'''
-        pass
+    # def generate_page(self):
+    #     ''' Generate page(s) as user completes every word/char on current page.'''
+    #     pass
            
 
 game = Game()
