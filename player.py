@@ -1,5 +1,5 @@
 import time
-from word_character import Word
+from word import Word
 
 class Player:
     ''' A user who wants to measure their WPM. '''

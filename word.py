@@ -1,4 +1,4 @@
-import imghdr
+from tkinter import font
 import pygame
 import pygame.freetype
 
@@ -14,17 +14,17 @@ class Word:
         ''' initialize the word and set its starting position'''
         # super().__init__() # might need this? not sure.
         self.screen = wpm_game.screen
-        self.screen_rect = wpm_game.screen.get_rect()
+        self.word_rect = wpm_game.screen.get_rect()
 
         # generate word (using built-in default font)
         default_font = pygame.freetype.get_default_font()
         self.word = pygame.font.Font(default_font, 10)
-        # self.img = self.word.render('hello',True, (255,255,255))
+        self.img = self.word.render('hello',True, (255,255,255))
         self.imgs = []
         
         
         # place word in center of screen
-        self.rect = self.screen_rect.center
+        self.rect = self.word_rect.center
     
     def generate_words(self):
         ''' generate words for user to input (to measure wpm)'''
@@ -39,7 +39,7 @@ class Word:
         
     def blitme(self):
         ''' Draw words ... '''    
-        self.screen.blit(self.imgs, self.rect)
+        self.screen.blit(self.img, self.rect)
     
     
     

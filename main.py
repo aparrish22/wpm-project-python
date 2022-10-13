@@ -23,14 +23,15 @@ class Game:
         self.settings = Settings()
         
         # The object we assigned to self.screen is called a surface
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height), pygame.RESIZABLE)
+        self.screen = pygame.display.set_mode((self.settings.screen_width
+                                               , self.settings.screen_height)
+                                               , pygame.RESIZABLE)
         pygame.display.set_caption("Words per Minute")
         
         # create word
         self.word = Word(self)
-        self.words = Word(self).generate_words() # TODO create group of words
+        # self.words = Word(self).generate_words() # TODO create group of words
         
-        self.bg_color = (20, 95, 45)
         
     def run_game(self):
         ''' Start the main loop for the game. '''
@@ -52,9 +53,11 @@ class Game:
         # redraw the screen during each pass through the loop
         self.screen.fill(self.settings.bg_color)
         
+        self.word.blitme()
+        
         # render list of words onto screen
-        for word in self.words:
-            word.blitme()
+        # for word in self.words:
+        #     word.blitme()
             
         
         # make the moost recently drawn screen visible
